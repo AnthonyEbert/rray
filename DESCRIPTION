@@ -13,7 +13,7 @@ Encoding: UTF-8
 LazyData: true
 Remotes:
     r-lib/vctrs,
-    DavisVaughan/xtensorrr
+    DavisVaughan/xtensorrr@support-logical
 Imports: 
     rlang,
     vctrs,
