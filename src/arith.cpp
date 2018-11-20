@@ -11,8 +11,8 @@ SEXP rray_add_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
   // get_value_type<T1> returns T1 (double, int) in all cases except T1 = rlogical
   // where it returns bool. This was needed to go R logical <-> xtensor of bools
   // because R logicals are int32 values.
-  using value_type_T1 = xt::get_value_type<T1>;
-  using value_type_T2 = xt::get_value_type<T2>;
+  using value_type_T1 = xt::r_detail::get_underlying_value_type_r<T1>;
+  using value_type_T2 = xt::r_detail::get_underlying_value_type_r<T2>;
   using common_type = typename std::common_type<typename value_type_T1::type, typename value_type_T2::type>::type;
   const xt::rarray<common_type>& res = x + y;
   return res;
@@ -20,8 +20,8 @@ SEXP rray_add_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
 
 template <typename T1, typename T2>
 SEXP rray_subtract_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
-  using value_type_T1 = xt::get_value_type<T1>;
-  using value_type_T2 = xt::get_value_type<T2>;
+  using value_type_T1 = xt::r_detail::get_underlying_value_type_r<T1>;
+  using value_type_T2 = xt::r_detail::get_underlying_value_type_r<T2>;
   using common_type = typename std::common_type<typename value_type_T1::type, typename value_type_T2::type>::type;
   const xt::rarray<common_type>& res = x - y;
   return res;
@@ -29,8 +29,8 @@ SEXP rray_subtract_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
 
 template <typename T1, typename T2>
 SEXP rray_multiply_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
-  using value_type_T1 = xt::get_value_type<T1>;
-  using value_type_T2 = xt::get_value_type<T2>;
+  using value_type_T1 = xt::r_detail::get_underlying_value_type_r<T1>;
+  using value_type_T2 = xt::r_detail::get_underlying_value_type_r<T2>;
   using common_type = typename std::common_type<typename value_type_T1::type, typename value_type_T2::type>::type;
   const xt::rarray<common_type>& res = x * y;
   return res;
@@ -38,8 +38,8 @@ SEXP rray_multiply_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
 
 template <typename T1, typename T2>
 SEXP rray_divide_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
-  using value_type_T1 = xt::get_value_type<T1>;
-  using value_type_T2 = xt::get_value_type<T2>;
+  using value_type_T1 = xt::r_detail::get_underlying_value_type_r<T1>;
+  using value_type_T2 = xt::r_detail::get_underlying_value_type_r<T2>;
   using common_type = typename std::common_type<typename value_type_T1::type, typename value_type_T2::type>::type;
   const xt::rarray<common_type>& res = x / y;
   return res;
