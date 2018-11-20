@@ -1,6 +1,6 @@
 # arithmetic ----------------------------------------------------------------------
 
-rray_arith_base <- function(op, x, y) {
+rray_binary_op_base <- function(op, x, y) {
 
   # precompute dimensionality and extend existing dims
   # xtensor-r issue #57 until we have a fix (if ever)
@@ -11,6 +11,7 @@ rray_arith_base <- function(op, x, y) {
   # Get op function
   op_fn <- switch(
     op,
+    "equal" = ,
     "+" = ,
     "-" = ,
     "/" = ,
@@ -44,7 +45,7 @@ vec_arith.vctrs_rray <- function(op, x, y) {
 #' @method vec_arith.vctrs_rray vctrs_rray
 #' @export
 vec_arith.vctrs_rray.vctrs_rray <- function(op, x, y) {
-  rray_arith_base(op, x, y)
+  rray_binary_op_base(op, x, y)
 }
 
 #' @method vec_arith.vctrs_rray MISSING

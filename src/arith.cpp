@@ -45,6 +45,12 @@ SEXP rray_divide_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
   return res;
 }
 
+template <typename T1, typename T2>
+SEXP rray_equal_cpp(const xt::rarray<T1>& x, const xt::rarray<T2>& y) {
+  const xt::rarray<rlogical>& res = xt::equal(x, y);
+  return res;
+}
+
 // -----------------------------------------------------------------------------
 // Helper for switching on the string op
 
@@ -74,6 +80,10 @@ SEXP rray_binary_op_cpp_impl(const std::string& op, const xt::rarray<T1>& x, con
 
     case str2int("/"): {
       return rray_divide_cpp(x, y);
+    }
+
+    case str2int("equal"): {
+      return rray_equal_cpp(x, y);
     }
 
     default: {
